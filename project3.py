@@ -7,7 +7,7 @@ nPlateCascade = cv2.CascadeClassifier("Resources/haarcascade_russian_plate_numbe
 minArea = 200
 color = (255,0,255)
 ###############################################
-cap = cv2.VideoCapture("Resources/video12.mp4")
+cap = cv2.VideoCapture(0)
 cap.set(3, frameWidth)
 cap.set(4, frameHeight)
 cap.set(10,150)
@@ -15,7 +15,7 @@ count = 0
 
 while True:
     success, img = cap.read()
-    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    imgGray = cv2.cvtColor(img, cv2.COLOR_BAYER_BG2RGB)
     numberPlates = nPlateCascade.detectMultiScale(imgGray, 1.1, 10)
     for (x, y, w, h) in numberPlates:
         area = w*h
